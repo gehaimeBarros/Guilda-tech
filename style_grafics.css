@@ -1,0 +1,48 @@
+body {
+    background-color: #ffd2f7;
+    font-family: "Poppins", sans-serif;
+}
+
+div#graficoPizza {
+    width: 63rem;
+    margin: auto;
+    margin-top: 2rem;
+}
+
+footer {
+    background: #3d0338;
+    width: 100%;
+    height: 100px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    margin: auto;
+}
+
+b {
+    color: #ffffff;
+    font-size: 29px;
+    line-height: 6rem;
+}
+
+button.btn-back {
+    width: 10rem;
+    border-radius: 5px;
+    font-weight: 560;
+    height: 3rem;
+    font-size: 1rem;
+    border: none;
+    background-color: #3d0338;
+    color: #fff;
+    padding: 12px;
+    margin-left: 12px;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+button.btn-avc:active {
+    background-color: #ffd2f7;
+    color: #3d0338;
+    border: 2px solid #3d0338;
+}

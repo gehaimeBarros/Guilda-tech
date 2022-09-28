@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="@gehaime https://github.com/gehaimeBarros">
+    <title>Guilda Tech - Lista de Tarefas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/7db78e5ecc.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/f9e19193d6.js" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="galaxy.png" type="image/x-icon">
+    <link rel="stylesheet" href="./index.css" />
+</head>
+
+<body>
+
+    <div class="col2">
+        <h1>Guilda Tech <i class="fa-solid fa-user-astronaut"></i>
+            <!---<button class="btn-avanco" onClick="window.location.href='progresso_guilda.html'">Progresso <i
+            class="fa-solid fa-chart-simple"></i></button>--> &nbsp;&nbsp;&nbsp;
+            <button class="btn-entrega" onClick="window.location.href='./bugsAbertos.html'">Bugs <i
+                    class="fa-sharp fa-solid fa-bugs"></i>
+            </button>
+            <select name="slc-report-guilda" id="slc-report" onChange="location = (this.value)">
+                <option value="#" selected>Tipo De Report </option>
+                <option value="./reportManual.html">Manual</option>
+                <option value="./reportAutomação.html">Automação</option>
+                <option value="./reportAutomacaoEManual.html">Manual e Automatizados</option>
+            </select>
+            <!--<button class="btn-entrega" onClick="window.location.href='entregas_da_semana.html'">Entregas <i
+                    class="fa-solid fa-clock"></i>
+            </button>-->
+            <button onClick="window.location.href='./index.html'" class="off"><i class="fa-solid fa-power-off"></i></button>
+        </h1>
+    </div>
+
+    <section>
+        <div class="container">
+            <div class="card">
+                <div class="content">
+                    <div class="imgBx">
+                        <i class="fa-sharp fa-solid fa-chart-simple fa-7x"></i>
+                    </div>
+                    <div class="contentBx">
+                    </div>
+                </div>
+                <ul class="sci">charts
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="content">
+                    <div class="imgBx">
+                        <i class="fa-sharp fa-solid fa-robot fa-7x"></i>
+                    </div>
+                    <div class="contentBx">
+                    </div>
+                </div>
+                <ul class="sci">automation
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="content">
+                    <div class="imgBx">
+                        <i class="fa-sharp fa-solid fa-hand fa-7x"></i>
+                    </div>
+                    <div class="contentBx">
+                    </div>
+                </div>
+                <ul class="sci">Manual tests
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="content">
+                    <div class="imgBx">
+                        <i class="fa-sharp fa-solid fa-folder fa-7x"></i>
+                    </div>
+                    <div class="contentBx">
+                    </div>
+                </div>
+                <ul class="sci">report
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <b><i class="fa-solid fa-rocket"></i></b>
+        <b>#GuildaTech</b>
+        <div class="col-footer">
+            <form action="#" method="get" id="perg-guild">
+                <h5>Pergunte a Guilda <i class="fa-sharp fa-solid fa-comment"></i></h5>
+                <p><input type="text" name="nome" id="nome" placeholder="nome" required /></p>
+                <p><input type="email" name="email" id="email" placeholder="seu@email.com" required /></p>
+                <textarea name="pergunta" id="pergunta" cols="30" rows="10" placeholder="pergunta?"></textarea>
+                <p><button type="submit" id="btn-enviar-resp">Enviar <i
+                            class="fa-sharp fa-solid fa-paper-plane"></i></button></p>
+            </form>
+        </div>
+    </footer>
+
+    <script src="./scripts.js"></script>
+
+    <script>
+       function preventBack() {
+            window.history.forward();
+        }
+        setTimeout("preventBack()", 0);
+        window.onunload = function () {
+            null
+        };
+    </script>
+</body>
+
+</html>

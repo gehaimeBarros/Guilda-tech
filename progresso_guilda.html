@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guilda - Progresso</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="shortcut icon" href="../img/galaxy.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/7db78e5ecc.js" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="galaxy.png" type="image/x-icon">
+    <link rel="stylesheet" href="style_grafics.css">
+</head>
+
+<body>
+    <button class="btn-back" onClick="window.location.href='index.html'"><i class="fa-solid fa-arrow-left-long"></i> Voltar</button>
+
+    <div id="graficoPizza"></div>
+
+    <footer>
+        <b><i class="fa-solid fa-rocket"></i></b>
+        <b>#GuildaTech</b>
+    </footer>
+
+    <script src="graficUtils.js"></script>
+    <script>
+        function preventBack() {
+            window.history.forward();
+        }
+        setTimeout("preventBack()", 0);
+        window.onunload = function() {
+            null
+        };
+    </script>
+
+</body>
+
+</html>

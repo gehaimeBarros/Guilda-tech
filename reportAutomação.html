@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.min.js"></script>
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script src="https://kit.fontawesome.com/7db78e5ecc.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/f9e19193d6.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="styleManualAndAutomation.css">
+    <link rel="shortcut icon" href="galaxy.png" type="image/x-icon">
+    <title>Guilda Tech - Report Testes Automatizados</title>
+</head>
+
+<body onchange="setValueMeta(), setValueAtigindo(), realiza_calculo()">
+
+    <div id="renderPDF" class="container">
+        <div class="jumbotron"
+            style="cursor: pointer; border: 2px solid #3d0136; margin-top: 1rem; background-color: #3d0136; color: #ffffff;">
+            <h1 onClick="window.location.href='./menuGuildaTech.html'" style="font-size: 39px; font-weight: 800;">Guilda
+                Tech <i class="fa-solid fa-user-astronaut"></i></h1>
+
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" href="#" onclick="createPDF();" role="button" id="btn1">Gerar report
+                    em PDF <i class="fa-sharp fa-solid fa-file-pdf"></i></a>
+
+            </p>
+            <!--<p class="lead">
+                <a class="btn btn-primary btn-lg" href="#"
+                    id="btn4">Inicio <i class="fa-sharp fa-solid fa-house"></i></a>
+
+            </p>
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" href="#" onClick="window.location.href='progresso_guilda.html'"
+                    role="button" id="btn2">Progresso <i class="fa-solid fa-chart-simple"></i></a>
+
+            </p>-->
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" href="#" onClick="window.location.href='./bugs.html'" role="button"
+                    id="btn3">Bugs <i class="fa-sharp fa-solid fa-bugs"></i></a>
+
+            </p><br>
+            <pclass="display-1"
+                style="font-size: 15px; letter-spacing: 2px; font-weight: 600; text-transform: capitalize;">Andamento
+                Automação <i class="fa-sharp fa-solid fa-robot"></i></p>
+                <output id="data"></output>
+                <output id="hora"></output>
+                <div style="margin: auto; text-align: center; margin-top: 2rem;">
+                    <input type="text"
+                        style="height: 4rem; font-size: 3rem; color: #fde2fa; font-weight: 700; background-color: transparent; border: none; text-align: center; letter-spacing: 1px; text-transform: uppercase;"
+                        size="50" id="id-name-proj" placeholder="nome do seu projeto">
+                </div>
+        </div>
+        <div id="customers">
+            <table id="tab_customers" class="table table-striped">
+                <h2>Total de testes <b style="color: #000000; font-size: 19px;">Automatizados</b> <i
+                        class="fa-sharp fa-solid fa-robot"></i></h2>
+                <thead>
+                    <tr class='btn-tr'>
+                        <th>Total Cts</th>
+                        <th>Testes Executados</th>
+                        <th>Testes Previstos(%)</th>
+                        <th>Meta</th>
+                        <th>Atingido</th>
+                        <th>Total do projeto(%)</th>
+                    </tr>
+                    <tr style="font-weight: 800; text-align: center;">
+                        <td><input size="5" type="number" id="input-num-1" class="pointspossible-two"
+                                style="text-align: center; cursor: pointer; background-color: transparent; border: 2px solid transparent;"
+                                placeholder="nº"></td>
+                        <td><input size="5" type="number" id="input-num-2" class="pointsgiven-two"
+                                style="text-align: center; cursor: pointer; background-color: transparent; border: 2px solid transparent;"
+                                placeholder="nº"></td>
+                        <td><input size="5" type="text" id="input-num"
+                                style="text-align: center; cursor: pointer; background-color: transparent; border: 2px solid transparent;"
+                                placeholder="nº"></td>
+                        <td><input size="5" type="text" id="value-semana"
+                                style="text-align: center; cursor: pointer; background-color: transparent; border: 2px solid transparent;"
+                                placeholder="nº"></td>
+                        <td><input size="5" type="text" id="value-atingido-one"
+                                style="text-align: center; cursor: pointer; background-color: transparent; border: 2px solid transparent;"
+                                placeholder="nº"></td>
+                        <td><input size="5" type="text" id="value" class="pointsperc-two" disabled
+                                style="text-align: center; cursor: pointer; background-color: transparent; border: 2px solid transparent;"
+                                placeholder="nº">
+                        </td>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+
+        <div>
+            <div class="widget-wrap">
+                <div id="demoA">
+                    <input type="number" min="0" max="100" id="demoB" />
+                    <button id="demoC">Calcular porcentagem <i class="fa-sharp fa-solid fa-percent"></i></button>
+                </div><br>
+                <div id="demo"></div>
+            </div><br>
+
+            <div
+                style="margin: auto; width: 60rem; border: 2px solid #000000; border-radius: 4px; background-color: #3d0136; color: #fde2fa;">
+                <div style="margin-left: 1.4rem;">
+                    <h2><b style="font-size: 19px;">Goal Verification</b> <i
+                            class="fa-sharp fa-solid fa-book-open-reader fa-2x"></i></h2>
+                    <label><i class="fa-sharp fa-solid fa-pen"></i> Meta <select
+                            style="border: none; text-align: center; background-color: transparent; cursor: pointer;">
+                            <option style="color: #000000;">SEMANAL</option>
+                            <option style="color: #000000;">DIÁRIA</option>
+                        </select> estabelecida</label>
+                    <input type="text" id="textNome-semana" name="textNome-semana" size="1" disabled placeholder="nº"
+                        style="text-align: center; font-size: 20px; background-color: transparent; border: none;" /><b
+                        style="font-size: 14px;"> cts</b>
+                    <i style="margin-left: 5rem;" class="fa-sharp fa-solid fa-pen"></i> <b style="font-size: 12px;"
+                        id="status-log">Atingido:
+                    </b><input type="text" id="textNome-atingido" name="textNome-atingido" size="1" disabled
+                        placeholder="nº"
+                        style="text-align: center; font-size: 20px; background-color: transparent; border: none;" /><br>
+                    <b style="font-size: 12px;" id="status-log"><i class="fa-sharp fa-solid fa-list-check fa-1x"></i>
+                        Status: </b><span id="cpfResponse"></span>
+                </div>
+                <div style="text-align: center;">
+                    <button onclick="validaMenssagem(this)"
+                        style="color: #000000; width: 10rem; height: 3rem; background-color: #ff70e5; font-weight: 700;">Calcular
+                        <i class="fa-sharp fa-solid fa-calculator"></i></button>
+                </div>
+                <div style="text-align: right; font-size: 10px;">
+                    <i class="fa-sharp fa-solid fa-rocket"></i>#GuildaTech</b>
+                </div>
+            </div>
+        </div><br><br><br>
+
+        <div style="text-align: center;">
+            <b class="col8-p-repot-info">Total de teste realizado na <b style="color: #000000; font-size: 18px;">SEMANA
+                    <i class="fa-sharp fa-solid fa-chart-pie"></i></b></b>
+            <div style="margin: auto; text-align: center;">
+                <input name="date-p1" placeholder="data inicial do projeto" type="text" onfocus="this.type='date'"> <b
+                    style="font-size: 22px; font-weight: 900; color: #000000;">/</b><input name="date-p2"
+                    placeholder="data final do projeto" onfocus="this.type='date'" type="text">
+            </div>
+            <div class="form-container"
+                style="border: 2px solid transparent; width: 40rem; height: 45rem; text-align: center; margin: auto;">
+
+                <form>
+                    <div class="mood">
+                        <input type="string" name="happy" id="happy" placeholder="Total" required>
+                        <button class="mood-btn">Semana 1 <i class="fa-sharp fa-solid fa-plus"></i></button>
+                    </div>
+                    <div class="mood">
+                        <input type="string" name="angry" id="angry" placeholder="Total" required>
+                        <button class="mood-btn">Semana 2 <i class="fa-sharp fa-solid fa-plus"></i></button>
+                    </div>
+                    <div class="mood">
+                        <input type="string" name="sad" id="sad" placeholder="Total" required>
+                        <button class="mood-btn">Semana 3 <i class="fa-sharp fa-solid fa-plus"></i></button>
+                    </div>
+                    <div class="mood">
+                        <input type="string" name="motivated" id="motivated" placeholder="Total" required>
+                        <button class="mood-btn">Semana 4 <i class="fa-sharp fa-solid fa-plus"></i></button>
+                    </div>
+                    <div class="mood">
+                        <input type="string" name="anxious" id="anxious" placeholder="Total" value="" required>
+                        <button class="mood-btn">Semana 5 <i class="fa-sharp fa-solid fa-plus"></i></button>
+                    </div>
+                    <div class="mood">
+                        <input style="color: transparent; border: transparent; background-color: transparent;"
+                            type="string" name="tired" id="tired" placeholder="" disabled />
+                        <button style="color: transparent; border: transparent; background-color: transparent;"
+                            class="mood-btn">Add <i class="fa-sharp fa-solid fa-chart-simple"></i></button>
+                    </div>
+                </form>
+                <div class="chart-container"
+                    style="height: 30rem; width: 32rem; border: 2px solid transparent; margin: auto;">
+                    <canvas id="myChart" width="100px" height="100px"></canvas>
+                </div>
+            </div>
+        </div><br><br><br>
+
+        <div class="div-cpl-status-info-squad">
+            <h5>Status <i class="fa-sharp fa-solid fa-file-contract"></i></h5>
+            <div class="col1-status-menu">
+                <div class="c8">
+                    <div class="c3">Status geral dos testes <i class="fa-sharp fa-solid fa-vial"></i></div>
+                    <div class="c1">Anterior <div>
+                            <div style="display: inline-block; vertical-align: middle;">
+                                <select class="fake-sel">
+                                    <option></option>
+                                    <option></option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="c2">Atual <div>
+                            <div style="display: inline-block; vertical-align: middle;">
+                                <select class="fake-sels">
+                                    <option></option>
+                                    <option></option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="div-evolu-frente">
+                <div class="col4">Evolução por frente <i class="fa-sharp fa-solid fa-hourglass-start"></i></div>
+
+                <div class="col1-status-menu-two">
+                    <div class="div-col1">
+                        <div class="col5"><input size="3"
+                                style="text-align: center; background-color: transparent; border: none;"
+                                placeholder="nome" id="input-evo" type="text"></div>
+                        <div class="col6">Previsto<br><input class="y1" type="text" placeholder="20%" id="info1" />
+                        </div>
+                        <div class="col7">Realizado<br><input class="y2" type="text" placeholder="20%" id="info1" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col1-status-menu-three">
+                    <div class="div-col1">
+                        <div class="col5"><input size="3"
+                                style="text-align: center; background-color: transparent; border: none;"
+                                placeholder="nome" id="input-evo" type="text"></div>
+                        <div class="col6">Previsto<br><input class="y3" type="text" placeholder="20%" id="info1" />
+                        </div>
+                        <div class="col7">Realizado<br><input class="y4" type="text" placeholder="20%" id="info1" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                $('.y1').mask("99%");
+                $('.y2').mask("99%");
+                $('.y3').mask("99%");
+                $('.y4').mask("99%");
+            </script>
+
+            <div class="col1-status-menu-fr">
+                <div class="col9">Resumo do dia <i class="fa-sharp fa-solid fa-book"></i></div>
+                <div><textarea id="text-area-form" placeholder="Hoje tivemos impacto"></textarea></div>
+            </div>
+        </div>
+
+        <div class="col-div-status-mitigar">
+            <div class="col-inpact">
+                <div id="f1">Risco <i class="fa-sharp fa-solid fa-triangle-exclamation"></i></div>
+                <div id="f2">Criticidade <i class="fa-sharp fa-solid fa-chart-line"></i></div>
+                <div id="f3">Impacto <i class="fa-sharp fa-solid fa-align-justify"></i></div>
+                <div id="f4">Como Mitigar? <i class="fa-sharp fa-solid fa-rectangle-list"></i></div>
+            </div>
+            <div class="col-inpact-two">
+                <input type="text" placeholder="Digite...   " id="d1" />
+                <input type="text" placeholder="Digite..." id="d2" />
+                <input type="text" placeholder="Digite..." id="d3" />
+                <input type="text" placeholder="Digite..." id="d4" />
+            </div>
+        </div>
+
+    </div><br>
+
+    <footer>
+        <b><i class="fa-solid fa-rocket"></i></b>
+        <b>#GuildaTech</b>
+        <div class="col-footer">
+            <form action="#" method="get" id="perg-guild">
+                <h6>Pergunte a Guilda <i class="fa-sharp fa-solid fa-comment"></i></h6>
+                <p><input type="text" name="nome" id="nome" placeholder="nome" required /></p>
+                <p><input type="email" name="email" id="email" placeholder="seu@email.com" required /></p>
+                <textarea name="pergunta" id="pergunta" cols="30" rows="10" placeholder="pergunta?"></textarea>
+                <p><button type="submit" id="btn-enviar-resp">Enviar <i
+                            class="fa-sharp fa-solid fa-paper-plane"></i></button></p>
+            </form>
+        </div>
+    </footer>
+
+    <script src="./reportManualAndAutomation.js"></script>
+</body>
+
+</html>
